@@ -5,8 +5,111 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="800" Loaded="Window_Loaded">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="FORUM" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Grid.Row="0"
+                   Foreground="BlueViolet"></TextBlock>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Liste des sujets" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Grid.Column="0"
+                   Foreground="BlueViolet"></TextBlock>
+            <TextBlock Text="Liste des messages" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Grid.Column="2"
+                   Foreground="BlueViolet"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Column="0" Name="lvSujets" SelectionChanged="lvSujets_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding NomSujet}" Width="80" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding LeCreateur.PseudoBlogger}" Width="80" VerticalAlignment="Center"></TextBlock>
+                            <Image Source="{Binding LeCreateur.AvatarBlogger}" Width="50" Height="50"></Image>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView Grid.Column="2" Name="lvMessages">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Contenu}" Width="220" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding DateMessage}" Width="80" VerticalAlignment="Center"></TextBlock>
+                            <Image Source="{Binding LeBlogger.AvatarBlogger}" Width="50" Height="50"></Image>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Nouveau message" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Grid.Column="0"
+                   Foreground="BlueViolet"></TextBlock>
+            <TextBlock Text="Statistiques" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Grid.Column="2"
+                   Foreground="BlueViolet"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Column="0">
+                <TextBlock Height="20" Text="Contenu du message"></TextBlock>
+                <TextBox Name="txtContenuMessage"></TextBox>
+                <Line Height="10"></Line>
+                <TextBlock Height="20" Text="Date du message"></TextBlock>
+                <DatePicker Name="dpDateMesage"></DatePicker>
+                <Line Height="10"></Line>
+                <TextBlock Height="20" Text="Blogger du message"></TextBlock>
+                <ComboBox Name="cboBloggers"  SelectionChanged="cboBloggers_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding PseudoBlogger}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Line Height="50"></Line>
+                <Button Name="btnAjouter" Content="Ajouter"  Click="btnAjouter_Click"></Button>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Vertical">
+                <TextBlock Text="Nombre de sujets"></TextBlock>
+                <TextBlock Name="txtNbSujets" FontSize="15" Foreground="Red" Margin="10,0,0,0"></TextBlock>
+                <TextBlock Text="Pourcentage"></TextBlock>
+                <TextBlock Name="txtPourcentage" FontSize="15" Foreground="Red" Margin="10,0,0,0"></TextBlock>
+                <TextBlock Text="Nombre de messages du blogger"></TextBlock>
+                <TextBlock Name="txtNbMessagesBlogger" FontSize="15" Foreground="Red" Margin="10,0,0,0"></TextBlock>
+                <TextBlock Text="Nombre de messages du sujet"></TextBlock>
+                <TextBlock Name="txtNbMessagesSujet" FontSize="15" Foreground="Red" Margin="10,0,0,0"></TextBlock>
+            </StackPanel>
+        </Grid>
         
     </Grid>
 </Window>

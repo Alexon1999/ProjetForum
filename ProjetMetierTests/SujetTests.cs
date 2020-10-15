@@ -12,16 +12,16 @@ namespace ProjetMetier.Tests
         [TestMethod()]
         public void AjouterMessageTest()
         {
-            // un objet de la class sujet
             Blogger b1 = new Blogger(1, "Neymar", "Image");
             Blogger b2 = new Blogger(1, "Michael", "Image");
 
+            // + instancier un objet de la classe sujet
             Sujet s = new Sujet("foot", b1);
+            // * s est donc un objet qui est de type Sujet
 
-            // s : est un objet qui est de type Sujet
-            Messsage m1 = new Messsage("Il est fort", "04/09/2020", b1);
-            Messsage m2 = new Messsage("Alllez champion", "04/09/2020", b2);
-            Messsage m3 = new Messsage("so comment", "04/09/2020", b2);
+            Message m1 = new Message("Il est fort", "04/09/2020", b1);
+            Message m2 = new Message("Alllez champion", "04/09/2020", b2);
+            Message m3 = new Message("so comment", "04/09/2020", b2);
 
             s.AjouterMessage(m1);
             s.AjouterMessage(m2);

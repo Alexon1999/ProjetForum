@@ -12,7 +12,6 @@ namespace ProjetMetier
 
 
         // Constructeur
-
         public Blogger(int unId ,string  unPseudo , string unAvatar)
         {
             IdBlogger = unId;

@@ -4,13 +4,13 @@ using System.Text;
 
 namespace ProjetMetier
 {
-    public class Messsage
+    public class Message
     {
         private string contenu;
         private string dateMessage;
         private Blogger leBlogger;
 
-        public Messsage(string unContenu , string uneDate , Blogger unBlogger)
+        public Message(string unContenu , string uneDate , Blogger unBlogger)
         {
             Contenu = unContenu;
             DateMessage = uneDate;
